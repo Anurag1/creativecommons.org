@@ -48,8 +48,7 @@ class ToolError(Exception):
 
 
 def diff_changes(filename, old, new):
-    """Display changes as a colorized unified diff.
-    """
+    """Display changes as a colorized unified diff."""
     diff = list(
         difflib.unified_diff(
             old.split("\n"),
@@ -127,8 +126,7 @@ def update_lang_footer(args, filename, content, lang_tags):
 
 
 def has_footer_comments(content):
-    """Determine if the FOOTER_COMMENTS are already present.
-    """
+    """Determine if the FOOTER_COMMENTS are already present."""
     for comment in FOOTER_COMMENTS:
         if content.find(comment) == -1:
             return False
@@ -184,8 +182,7 @@ def insert_missing_lang_footer_comments(args, filename, content):
 
 
 def has_correct_faq_officialtranslations(content):
-    """Determine if the link to the translation FAQ is correct.
-    """
+    """Determine if the link to the translation FAQ is correct."""
     if content.find(f'"{FAQ_TRANSLATION_LINK}"') == -1:
         return False
     return True
@@ -235,16 +232,14 @@ def normalize_faq_translation_link(args, filename, content):
 
 
 def has_correct_languages_anchor(content):
-    """Determine if language anchor uses id
-    """
+    """Determine if language anchor uses id"""
     if content.find('id="languages"') == -1:
         return False
     return True
 
 
 def normalize_languages_anchor(args, filename, content):
-    """Replace name with id in languages anchor (HTML5 compatibility)
-    """
+    """Replace name with id in languages anchor (HTML5 compatibility)"""
     if has_correct_languages_anchor(content):
         print(
             f"{filename}:     Skipping unneeded language anchor normalization"
@@ -270,8 +265,7 @@ def normalize_languages_anchor(args, filename, content):
 
 
 def normalize_line_endings(args, filename, content):
-    """Normalize line endings to unix LF (\\n)
-    """
+    """Normalize line endings to unix LF (\\n)"""
     re_pattern = re.compile("\r(?!\n)")
     matches = re_pattern.findall(content)
     message = ""
@@ -292,8 +286,7 @@ def normalize_line_endings(args, filename, content):
 
 
 def process_file_contents(args, file_list, lang_tags):
-    """Process each of the CC0 legalcode files and update them, as necessary.
-    """
+    """Process each CC0 legalcode file and update them, as necessary."""
     for filename in file_list:
         with open(filename, "r", encoding="utf-8", newline="") as file_in:
             content = file_in.read()
@@ -331,8 +324,7 @@ def process_file_contents(args, file_list, lang_tags):
 
 
 def lang_tags_from_filenames(file_list):
-    """Extract RFC 5646 language tags from filename(s)
-    """
+    """Extract RFC 5646 language tags from filename(s)"""
     if isinstance(file_list, str):
         lang_tags = [file_list.split(".")[1][2:]]
     else:

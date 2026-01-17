@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # vim: set fileencoding=utf-8:
-"""Dictionaries mapping RFC 5646 language tags to labels and selection text.
-"""
+"""Dictionaries mapping RFC 5646 language tags to labels and selection text."""
 
 LABEL = {
     "ar": "العربية",
